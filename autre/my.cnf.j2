@@ -1,0 +1,19 @@
+<?php
+
+[client]
+user=root
+password=btsinfo
+        
+- name: Gestion du my.cnf
+      copy:
+        src: /root/autres/my.cnf.j2
+        dest: /root/.my.cnf 
+        owner: root
+        group: root
+        mode: 0600       
+
+- name: Gestion du mot de passe du root 
+      mysql_user:
+        name: root
+        password: btsinfo 
+        login_unix_socket: /var/run/mysqld/mysqld.sock 
